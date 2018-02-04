@@ -1,0 +1,36 @@
+<div ng-controller="MongomytListController as ctrl" ng-init="ctrl.init('collections_list','')">  
+    <div style="height: 100%; width: 100%; display: table;">
+        <div style="vertical-align: centre;display: table-cell; height: 100%;">
+            <table border=1 frame=below rules=rows style="margin: 0 auto;" width="50%" >
+                <colgroup>
+                    <col span="1" style="width: 15%;">
+                    <col span="1" style="width: 50%;">
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 15%;">
+                </colgroup>
+	        <tr>
+                    <th colspan="4" style="text-align: center; padding: 10px; "><font size="6">MongoDB Collections List</font></th>
+                </tr> 
+                <tr>
+                    <th style="text-align: left; padding: 10px; font-style: italic;"><font size="5">Name</font></th>
+                    <th style="text-align: left; padding: 10px; font-style: italic;"><font size="5">Description</font></th>
+                    <th style="text-align: center; padding: 10px; font-style: italic;"><font size="5">Row Count</font></th>
+                    <th style="text-align: center; padding: 10px; font-style: italic;"><font size="5">Search Link</font></th>
+                </tr>
+                <tr ng-repeat="collection in ctrl.the_collections.collections_list">
+                    <td style="text-align: left; padding: 10px;"><font size="4">{{ collection.collection_name }}</font></td>
+                    <td style="text-align: left; padding: 10px;"><font size="4">{{ collection.collection_description }}</font></td>
+		    <td style="text-align: center; padding: 10px;" ng-controller="MongomytListController as ctrl2" ng-init="ctrl2.init('collections_list', collection.collection_name )" >
+                        <span>{{ctrl2.the_collections.collection_rowcount}}</span>
+                        <span ng-if="ctrl2.loading">??</span>
+                    </td>
+                    <td style="text-align: center; padding: 10px;">
+                    <span ng-repeat="collection2 in ctrl.the_collections.collections_querylink">
+                        <span ng-if="collection.collection_name == collection2.collection_name && collection2.collection_querylink == 'Y'"><font size="4"><a ng-href="#!/mongoquery2/{{collection.collection_name}}">Y</a></font></span>
+                    </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

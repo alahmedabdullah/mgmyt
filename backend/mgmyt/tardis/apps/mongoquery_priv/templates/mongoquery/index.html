@@ -1,0 +1,31 @@
+<div ng-app="MongoQueryApp">
+   <div ng-view></div>
+</div>
+<script src="{% static 'js/bundle.js' %}" ></script>
+<script>
+_urlPrefixes = {
+  API: "/apps/mongoquery/api/v1/",
+  TEMPLATES: "/static/mongoquery/"
+};
+angular.module('MongoQueryApp',['Home','Mongomyt','Mongoquery2','ngResource','ngRoute']);
+
+angular.module('MongoQueryApp').config(['$routeProvider', function($routeProvider) {
+  $routeProvider
+    .when("/", {
+      templateUrl: _urlPrefixes.TEMPLATES + "components/mongomyt/mongomyt.html",
+      label: "Home"
+    })
+    .when("/mongoquery", {
+      templateUrl: _urlPrefixes.TEMPLATES + "components/mongomyt/mongomyt.html",
+      label: "Mongomyt"
+    })
+    .when("/mongoquery2/:collection_name", {
+      templateUrl: _urlPrefixes.TEMPLATES + "components/mongoquery/mongoquery2.html",
+      label: "Mongoquery2"
+    })
+    .otherwise("/mongoquery");
+}],['$httpProvider', function($httpProvider){
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+}]);
+</script>

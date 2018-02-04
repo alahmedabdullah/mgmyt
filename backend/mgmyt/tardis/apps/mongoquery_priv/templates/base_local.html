@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}<title>Search{% if mongo_result %} Results{% endif %}</title>{% endblock %}
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <!-- Add additional CSS in static file -->
+  <!-- Add additional CSS in static file 
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'gomyt/style.css' %}" />
+  -- Add additional CSS in static file -->
+</head>
+<body style="height: 100%">
+
+      </div>
+          {% block content %}{% endblock %}
+      </div>
+</body>
+</html>
