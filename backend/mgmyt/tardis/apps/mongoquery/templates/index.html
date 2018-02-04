@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<!DOCTYPE html>  
+<html ng-app="myApp">  
+  <head>
+    <title>My Site</title>
+      <script src="{% static 'js/bundle.js' %}" ></script>
+      <base href="/">
+  </head>
+  <body>
+    <div>
+      <div ng-view></div>
+    </div>
+  </body>
+</html>

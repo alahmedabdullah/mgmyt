@@ -1,0 +1,42 @@
+<div ng-controller="MongoqueryController as qryCtrl">  
+<form ng-submit="qryCtrl.submitQuery(query);qryCtrl.setFormSubmitted()">
+    <div style="height: 100%; width: 100%; display: table;">
+    <div style="vertical-align: centre;display: table-cell; height: 100%;">
+    <table border=0 frame=void rules=none style="margin: 0 auto;" width="50%" >
+    <tr>
+        <th style="text-align: center; padding: 10px; "><font size="6">Search MongoDB Collection : {{qryCtrl.collection_name}}</font></th>
+    </tr>
+    <tr>
+        <td style="text-align: center; padding: 10px;"><font size="5">Enter query text:</font></td>
+    </tr>
+    <tr>
+        <td style="text-align: center; padding: 10px;"><font size="6"><textarea type="text" ng-model="query.query_text" rows="24" cols="120"> </textarea></font></td>
+    </tr>
+    <tr>
+        <td style="text-align: center; padding: 10px;"><font size="6"><button type="submit">Submit Query</button></font></td>
+    </tr>
+    </table>
+    </div>
+    </div>
+</form>
+<div ng-if="qryCtrl.formsubmitted" style="text-align:center">{{qryCtrl.waitmsg}}</div>
+<div ng-if="qryCtrl.loading"> 
+    <div style="height: 100%; width: 100%; display: table;">
+    <div style="vertical-align: centre;display: table-cell; height: 100%;">
+    <table border=1 frame=below rules=rows style="margin: 0 auto;" width="50%" >
+    <tr>
+        <th style="text-align: center; padding: 10px; "><font size="6">Search result:</font></th>
+    </tr>
+    <div ng-if="qryCtrl.mongo_result.mongo_result.length > 0" >
+        <tr ng-repeat="result in qryCtrl.mongo_result.mongo_result">
+            <td style="text-align: center; padding: 10px;">{{ result }}</td> 
+        </tr>
+    </div>
+    <tr ng-if="qryCtrl.mongo_result.mongo_result.length == 0" >
+        <td style="text-align: center; padding: 10px;">Empty result set!</td>
+    </tr>
+    </table>
+    </div>
+    </div>
+</div>
+</div>
